@@ -5,11 +5,12 @@ import "flatpickr/dist/flatpickr.min.css";
 const input = document.querySelector("input#datetime-picker")
 const startBtn = document.querySelector('button[data-start]')
 startBtn.setAttribute("class", "btn btn-primary")
+
 let daysVal = document.querySelector('.value[data-days]')
 let hoursVal = document.querySelector('.value[data-hours]')
 let minutesVal = document.querySelector('.value[data-minutes]')
 let secondsVal = document.querySelector('.value[data-seconds]')
-
+let timerId = 0
  
 const DELAY = 1000;
 let isActive = false
@@ -43,8 +44,8 @@ const shoosedTime = Date.parse(input.value)
            
            isActive = true
            const currentTime = Date.now() 
-           const deltaTime = shoosedTime-currentTime
-        if (shoosedTime ===currentTime) {
+           const deltaTime = shoosedTime - currentTime
+        if (deltaTime < 0) {
                clearInterval(timerId)
                return
            }
