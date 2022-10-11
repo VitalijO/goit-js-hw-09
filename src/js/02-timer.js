@@ -44,7 +44,8 @@ const shoosedTime = Date.parse(input.value)
            isActive = true
            const currentTime = Date.now() 
            const deltaTime = shoosedTime - currentTime
-           if (deltaTime < 0) {
+        if (deltaTime < 0) {
+               clearInterval(timerId)
                return
            }
        
