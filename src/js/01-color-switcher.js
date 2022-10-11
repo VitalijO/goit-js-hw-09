@@ -1,5 +1,5 @@
 
-const startBtn = document.querySelector('button[data-start]');
+const startBtn = document.querySelector('button[data-start]')
 const stopBtn = document.querySelector('button[data-stop]');
 const bodyEl = document.querySelector('body')
 
@@ -15,24 +15,18 @@ function switchBodyColor() {
 }
 
 startBtn.addEventListener("click", () => {
-
-    if (startBtn.dataset.start>0) {
-    return
-    }
-
-    startBtn.setAttribute("class", "btn btn-secondary")
+  startBtn.disabled = true
+  startBtn.setAttribute("class", "btn btn-secondary")
 
   timerId = setInterval(() => {
-    
-        switchBodyColor() 
-        startBtn.dataset.start = 1
+        switchBodyColor()   
   }, DELAY);
 }); 
 
 startBtn.addEventListener('click', switchBodyColor)
 stopBtn.addEventListener("click", () => {
     clearInterval(timerId);
-    startBtn.dataset.start = 0
+    startBtn.disabled = false
     startBtn.removeAttribute("class", "btn-secondary")
     startBtn.setAttribute("class", "btn btn-primary ")
 });
