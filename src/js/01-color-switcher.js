@@ -2,7 +2,8 @@
 const startBtn = document.querySelector('button[data-start]');
 const stopBtn = document.querySelector('button[data-stop]');
 const bodyEl = document.querySelector('body')
-
+console.log(startBtn)
+let isActive = false
 let timerId = null;
 const DELAY = 1000;
   
@@ -14,9 +15,13 @@ function switchBodyColor() {
   bodyEl.style.backgroundColor = getRandomHexColor(); 
 }
 
-startBtn.addEventListener("mouseleave", () => {
+// У першому завданні потрібно, щоб колір фону 
+// сторінки почав змінюватись тільки при натисканні на кнопку start.
+// Приберіть зміну кольору фону сторінки з події "mouseleave".
 
-    if (startBtn.dataset.start>0) {
+startBtn.addEventListener("click", () => {
+
+    if (isActive) {
     return
     }
 
@@ -25,7 +30,7 @@ startBtn.addEventListener("mouseleave", () => {
   timerId = setInterval(() => {
     
         switchBodyColor() 
-        startBtn.dataset.start = 1
+        let isActive = true
   }, DELAY);
 }); 
 
